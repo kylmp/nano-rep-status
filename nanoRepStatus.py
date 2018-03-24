@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import jsonify
 import nano
 
 app = Flask(__name__)
@@ -18,17 +19,16 @@ def get_info():
     acc_info = rpc.account_info(acc, True, True, True)
     peers = len(rpc.peers())
     blocks = rpc.block_count()
-    response = {
-        "account":acc,
-        "representative":acc_info["representative"],
-        "balance":acc_info["balance"],
-        "weight":acc_info["weight"],
-        "peers":peers,
-        "blocks":blocks["count"],
-        "unchecked":blocks["unchecked"],
-        "version":version
-    }
-    return response
+    return jsonify(
+        account=acc,
+        representative=acc_info["representative"],
+        balance=acc_info["balance"],
+        weight=acc_info["weight"],
+        peers=peers,
+        blocks=blocks["count"],
+        unchecked=blocks["unchecked"],
+        version=version
+    )
 
 if __name__ == '__main__':
     app.run(port=7575)
