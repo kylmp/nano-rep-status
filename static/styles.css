@@ -1,0 +1,28 @@
+body {
+    background-color: #1f1f1f;
+    color:#dddddddd;
+}
+
+.nav {
+	background: black;
+	color: #f9be03;
+}
+.nav-text {
+	padding: 5px;
+	font-size: 1.25em;
+	margin: 0px;
+	opacity: 0.9;
+	cursor: default;
+}
+
+.git {
+	opacity: 0.75;
+}
+.git:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+.logo {
+	width: 100%;
+}
