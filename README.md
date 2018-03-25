@@ -5,6 +5,8 @@ Status page for nano representatives. Shows online status, balances, voting weig
 
 Created by stunts - /u/quiteCryptic 
 
+![Picture](https://raw.githubusercontent.com/qcryptic/nano-rep-status/master/pic.png)
+
 ### Installation 
 
 **Prerequisite:** Your nano node should already be running and accessible via RPC from the system this status page is running on.
