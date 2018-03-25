@@ -35,20 +35,26 @@ def load_page():
 
 @app.route(root+"info")
 def get_info():
-    version = rpc.version()["node_vendor"].split()[1]
-    acc_info = rpc.account_info(acc, True, True, True)
-    peers = len(rpc.peers())
-    blocks = rpc.block_count()
-    return jsonify(
-        account=acc,
-        representative=acc_info["representative"],
-        balance=acc_info["balance"],
-        weight=acc_info["weight"],
-        peers=peers,
-        blocks=blocks["count"],
-        unchecked=blocks["unchecked"],
-        version=version
-    )
+	try:
+		version = rpc.version()["node_vendor"].split()[1]
+		acc_info = rpc.account_info(acc, True, True, True)
+		peers = len(rpc.peers())
+		blocks = rpc.block_count()
+		return jsonify(
+			account=acc,
+			representative=acc_info["representative"],
+			balance=acc_info["balance"],
+			weight=acc_info["weight"],
+			peers=peers,
+			blocks=blocks["count"],
+			unchecked=blocks["unchecked"],
+			version=version,
+			status="ONLINE"
+		)
+	except Exception:
+		return jsonify (
+			status="OFFLINE"
+		)  
 
 if __name__ == '__main__':
     app.run(port=port)

@@ -65,8 +65,7 @@ hr {
 .logo-div {
 	padding: 0 0 20px 0;
 }
-.online {
-	color: #4ed259;
+#status {
 	font-weight: bold;
 }
 
