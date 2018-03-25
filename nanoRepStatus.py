@@ -1,19 +1,40 @@
-from flask import Flask
-from flask import render_template
-from flask import jsonify
+from flask import Flask, render_template, jsonify, Blueprint
 import nano
 
-app = Flask(__name__)
+####################################### CONFIG ########################################
 
-title = 'Stunts\' Nano Node'
+#(optional) Enter different root path - default no path
+# !! must include ending '/' !! (ex. /nano-node-status/)
+root='/'
+#(optional) Enter different port number
+port=7575
+#(optional) Enter different title for the page
+title = 'Nano Node Monitor'
+
+#Enter RPC address for your node (keep the same if it is hosted on the same server)
 rpc = nano.rpc.Client('http://ip6-localhost:7076')
+#Enter your representative address
 acc = 'xrb_1stuntsgoycyqjdzszzzkqj3nzyj44kgtxt7prf6sapo37tb7znp3h7usw7w'
 
-@app.route("/")
-def load_page():
-    return render_template('template.html', title=title, account=acc)
+#Add any additional links you would like to show who you are
+#Simply add a comma to the last line, then copy the format and fill in accordingly
+#Only the name is displayed and link will open if clicked
+owner_info = [
+    {"name":"Stunts", "link":""},
+    {"name":"Reddit", "link":"https://www.reddit.com/user/quiteCryptic/overview"}
+]
 
-@app.route("/info")
+################################# END CONFIG ########################################
+
+bp = Blueprint('node', __name__, template_folder='templates', static_folder='static')
+app = Flask(__name__)
+app.register_blueprint(bp, url_prefix=root)
+
+@app.route(root)
+def load_page():
+    return render_template('template.html', title=title, account=acc, owner_info=owner_info, root=root)
+
+@app.route(root+"info")
 def get_info():
     version = (rpc.version()["node_vendor"])
     acc_info = rpc.account_info(acc, True, True, True)
@@ -31,4 +52,5 @@ def get_info():
     )
 
 if __name__ == '__main__':
-    app.run(port=7575)
+    app.run(port=port)
+

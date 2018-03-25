@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Nano node status page" />
     <meta name="author" content="stunts" />
+    <meta id="data" data-account="{{account}}" data-root="{{root}}">
 
-	<link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{url_for('node.static', filename='img/favicon/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('node.static', filename='img/favicon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('node.static', filename='img/favicon/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{url_for('node.static', filename='img/favicon/site.webmanifest')}}">
+    <link rel="mask-icon" href="{{url_for('node.static', filename='img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+	<link rel="stylesheet" href="{{url_for('node.static', filename='vendor/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{url_for('node.static', filename='styles.css')}}">
 </head>
 <body>
 	<nav class="navbar nav">
@@ -16,16 +25,101 @@
 			<p class="nav-text">Nano Node Status</p>
 		</div>
 		<div>
-			<img class="git" src="{{url_for('static', filename='img/git.png')}}">
+			<img class="git" src="{{url_for('node.static', filename='img/git.png')}}" title="View source on github" onclick="window.open('https://github.com/qcryptic/nano-rep-status', '_blank');">
 		</div>
 	</nav>
-	<div class="col-12 offset-lg-2 offset-xl-3 col-lg-8 col-xl-6" style="padding: 5vh;">
-		<div class="col-12 col-md-8 col-xl-6">
-			<img class="logo" src="{{url_for('static', filename='img/logo.svg')}}">
+	<div class="col-12 offset-lg-2 offset-md-1 offset-xl-3 col-md-10 col-lg-8 col-xl-6 content">
+		<div class="row">
+			<div class="col-12 col-lg-6 logo-div">
+				<img class="logo" src="/static/img/logo.svg">
+			</div>
+			<div class="col-12 col-lg-6 status no-left-pad">
+	            <span>Status: <span class="online">ONLINE</span></span>
+	        </div>
 		</div>
-	
+		<div class="row links">
+			<div class="col-12 col-lg-8 no-left-pad">
+				<p>
+                    <span class="label">Representative:</span>
+                    <span class="link" style="word-wrap: break-word;" onclick="window.open('https://nano.org/en/explore/account/'+data.account, '_blank');"> {{account}}</span>
+                </p>
+                <p>
+                    <span class="label">View on:</span>
+                    <span class="link" onclick="window.open('https://nano.org/en/explore/account/'+data.account, '_blank');"> Nano.org</span> |
+                    <span class="link" onclick="window.open('https://www.nanode.co/account/'+data.account, '_blank');"> Nanode</span> |
+                    <span class="link" onclick="window.open('https://nanowat.ch/account/'+data.account, '_blank');"> Nanowat.ch</span>
+                </p>
+                <p>
+                    <span class="label">Owner:</span>
+                    {% for item in owner_info %}
+                    {% if item.link|length > 0 %}
+                    <span class="link" id="{{item.link}}" onclick="window.open(this.id, '_blank');"> {{item.name}}</span>
+                    {% else %}
+                    <span> {{item.name}}</span>
+                    {% endif %}
+                    {% if not loop.last %}
+                    <span> |</span>
+                    {% endif %}
+                    {% endfor %}
+                </p>
+			</div>
+            <div class="d-none d-lg-block col-lg-4 qr-div">
+                <img class="qr" src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{account}}&choe=UTF-8">
+            </div>
+		</div>
+		<div class="row">
+            <div class="col-12 col-lg-6 node-info info">
+                <h4>Node Information:</h4>
+                <div class="table-container">
+                    <div class="row">
+                        <div class="col-6">Version</div>
+                        <div id="version" class="col-6 pull-right">...</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">Blocks</div>
+                        <div id="blocks" class="col-6 pull-right">...</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">Unchecked</div>
+                        <div id="unchecked" class="col-6 pull-right">...</div>
+                    </div>
+                    <hr>
+                    <div class="row last-item">
+                        <div class="col-6">Peers</div>
+                        <div id="peers" class="col-6 pull-right">...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 info">
+                <h4>Account Information:</h4>
+                <div class="table-container">
+                    <div class="row">
+                        <div class="col-6">Account</div>
+                        <div id="account" class="col-6 pull-right">...</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">Representative</div>
+                        <div id="representative" class="col-6 pull-right">...</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">Balance</div>
+                        <div id="balance" class="col-6 pull-right">...</div>
+                    </div>
+                    <hr>
+                    <div class="row last-item">
+                        <div class="col-6">Vote Weight</div>
+                        <div id="weight" class="col-6 pull-right">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
-	<script src="{{url_for('static', filename='vendor/jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='vendor/popper.min.js')}}"></script>
-	<script src="{{url_for('static', filename='vendor/bootstrap.min.js')}}"></script>
+	<script src="{{url_for('node.static', filename='vendor/jquery.min.js')}}"></script>
+	<script src="{{url_for('node.static', filename='vendor/popper.min.js')}}"></script>
+	<script src="{{url_for('node.static', filename='vendor/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('node.static', filename='javascript.js')}}"></script>
 </body>
