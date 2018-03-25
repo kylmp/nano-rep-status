@@ -3,8 +3,7 @@ import nano
 
 ####################################### CONFIG ########################################
 
-#(optional) Enter different root path - default no path
-# !! must include ending '/' !! (ex. /nano-node-status/)
+#(optional) Enter different root path (ex. /nano-node-status)
 root='/'
 #(optional) Enter different port number
 port=7575
