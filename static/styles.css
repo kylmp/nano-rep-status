@@ -103,7 +103,7 @@ hr {
     overflow: hidden;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 	.status {
 		text-align: left;
 		padding-bottom: 10px;
