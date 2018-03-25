@@ -28,6 +28,7 @@ git clone https://github.com/qcryptic/nano-rep-status.git
 
 *First you should edit the config variables in nanoRepStatus.py as needed*
 ```
+cd ~/nano-rep-status
 python3 nanoRepStatus.py
 ```
 
