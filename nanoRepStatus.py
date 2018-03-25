@@ -36,7 +36,7 @@ def load_page():
 
 @app.route(root+"info")
 def get_info():
-    version = (rpc.version()["node_vendor"])
+    version = rpc.version()["node_vendor"].split()[1]
     acc_info = rpc.account_info(acc, True, True, True)
     peers = len(rpc.peers())
     blocks = rpc.block_count()

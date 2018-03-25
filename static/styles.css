@@ -98,6 +98,11 @@ hr {
     padding-bottom: 5px;
 }
 
+.prevent-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 @media (max-width: 768px) {
 	.status {
 		text-align: left;

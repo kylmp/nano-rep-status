@@ -13,10 +13,12 @@ $( document ).ready(function() {
 });
 
 function updateInfo(data) {
+    var weight = Math.round(data.weight/1000000000000000000000000000000);
+    var balance = Math.round(data.balance/1000000000000000000000000000000);
     $('#account').html(data.account);
     $('#representative').html(data.representative);
-    $('#balance').html(data.balance);
-    $('#weight').html(data.weight);
+    $('#balance').html(balance);
+    $('#weight').html(weight);
     $('#peers').html(data.peers);
     $('#blocks').html(data.blocks);
     $('#unchecked').html(data.unchecked);
