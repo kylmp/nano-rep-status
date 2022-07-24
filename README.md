@@ -3,7 +3,7 @@
 ### About
 Status page for nano representatives. Shows online status, balances, voting weight and more.
 
-Created by stunts - /u/quiteCryptic 
+Created by kylmp
 
 ![Picture](https://raw.githubusercontent.com/qcryptic/nano-rep-status/master/pic.png)
 
