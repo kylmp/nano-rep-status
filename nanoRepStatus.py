@@ -19,8 +19,8 @@ acc = 'xrb_1stuntsgoycyqjdzszzzkqj3nzyj44kgtxt7prf6sapo37tb7znp3h7usw7w'
 #Simply add a comma to the last line, then copy the format and fill in accordingly
 #Only the name is displayed and link will open if clicked
 owner_info = [
-    {"name":"Stunts", "link":""},
-    {"name":"Reddit", "link":"https://www.reddit.com/user/quiteCryptic/overview"}
+    {"name":"Klymp", "link":""},
+    {"name":"Reddit", "link":"https://www.reddit.com/user/username/overview"}
 ]
 
 ################################# END CONFIG ########################################
