@@ -40,5 +40,3 @@ nohup python3 nanoRepStatus.py &
 ```
 
 A lot of the design is based on the design from https://github.com/dbachm123/nanoNodeMonitor
-
-**Donate:** xrb_38z7oxody6ubdm8awbxjgyjc3j7axcwnfmqdhcz7tj48pyzj79qodq1aq95n
